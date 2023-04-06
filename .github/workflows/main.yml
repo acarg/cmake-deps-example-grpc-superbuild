@@ -16,9 +16,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ubuntu_image: [ubuntu-18.04, ubuntu-20.04, ubuntu-22.04]
+        ubuntu_image: [ubuntu-20.04, ubuntu-22.04]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Configure
         run: cmake -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install -DCMAKE_INSTALL_PREFIX=install -Bbuild -S.
       - name: Build
@@ -46,7 +46,7 @@ jobs:
       - name: Setup dockcross
         run: docker run --rm dockcross/${{ matrix.name }} > ./dockcross-${{ matrix.name }}; chmod +x ./dockcross-${{ matrix.name }}
       - name: Configure
-        run: ./dockcross-${{ matrix.name }} cmake -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install -DCMAKE_INSTALL_PREFIX=install -Bbuild -S.
+        run: ./dockcross-${{ matrix.name }} cmake -DCMAKE_PREFIX_PATH=/work/install -DCMAKE_INSTALL_PREFIX=install -Bbuild -S.
       - name: Build
         run: ./dockcross-${{ matrix.name }} cmake --build build
 
