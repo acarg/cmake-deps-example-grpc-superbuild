@@ -14,7 +14,7 @@ This project depends on gRPC, which has a few dependencies (listed
 the main project (as a "superbuild"). To see how to build the main
 project separately, see [this other blog post](https://www.acarg.ch/posts/cmake-deps/).
 
-To run the superbuild, just run:
+Run the superbuild with:
 
 ```
 cmake -DCMAKE_INSTALL_PREFIX=build/install -DCMAKE_PREFIX_PATH=$(pwd)/build/install -Bbuild -S.
